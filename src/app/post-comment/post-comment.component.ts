@@ -8,6 +8,7 @@ import {CommentService} from '../services/comment.service';
 })
 export class PostCommentComponent implements OnInit {
   comment: Comments;
+  empty: boolean = true;
   textValue: string = '';
 
   constructor(
@@ -17,13 +18,15 @@ export class PostCommentComponent implements OnInit {
   ngOnInit() {
   }
 
-  textAreaEmpty(body: string){
-    if (body == '') {
+  textAreaEmpty(body: string) {
+    if (body === '') {
       console.log('Vide');
-      return true;
+      this.empty = true;
+    }else{
+      console.log(body);
+      this.empty = false;
     }
-    console.log('NonVide');
-    return false;
+
   }
   private sendComment(body: string) {
     console.log(body);
