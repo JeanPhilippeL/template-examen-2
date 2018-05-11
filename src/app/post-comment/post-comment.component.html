@@ -1,0 +1,13 @@
+<div>
+  <label>Champ de texte: <br />
+    <input #comment (keyup.enter)="textAreaEmpty()">
+
+    <p *ngIf="textAreaEmpty()">
+      <button (click)="sendComment(comment.value)">PAS Ajouter le commentaire</button>
+    </p>
+    <p *ngIf="!textAreaEmpty()">
+      <button (click)="sendComment(comment.value)">Ajouter le commentaire</button>
+    </p>
+
+  </label>
+</div>
