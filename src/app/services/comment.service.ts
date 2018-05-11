@@ -8,10 +8,16 @@ import {Comments} from '../models/Comments';
 @Injectable()
 export class CommentService {
   private apiUrl = 'http://localhost:3000/comments';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
   constructor(private http: HttpClient) { }
 
   addComment(body: string): Observable<Comments> {
-    return this.http.post<Comments>(this.apiUrl, body) .pipe(
+    return this.http.post<Comments>(this.apiUrl, body, this.httpOptions) .pipe(
       catchError(this.handleError(new Comments))
     );
   }
